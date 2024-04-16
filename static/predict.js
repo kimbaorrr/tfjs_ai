@@ -8,16 +8,11 @@ var img = document.getElementById('img-to-show');
 
 
 async function loadModel() {
-    loadSpin();
-    scrollDown();
     try {
-        if (localStorage.getItem(`${project.name}_model`) != null) {
-            model = await localStorage.getItem(`${project.name}_model`);
-        } else {
-
-            model = await tf.loadLayersModel(project.model);
-            localStorage.setItem(`${project.name}_model`, model);
-        }
+        document.getElementById('xem-them').style.display = "none";
+        loadSpin();
+        scrollDown();
+        model = await tf.loadLayersModel(project.model);
     } catch (e) {
         alert(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`);
         console.error(e.message);

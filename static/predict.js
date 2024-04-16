@@ -12,11 +12,11 @@ async function loadModel() {
     scrollDown();
     try {
         if (localStorage.getItem(`${project.name}_model`) != null) {
-            model = JSON.parse(localStorage.getItem(`${project.name}_model`));
+            model = localStorage.getItem(`${project.name}_model`);
         } else {
 
             model = await tf.loadLayersModel(project.model);
-            localStorage.setItem(`${project.name}_model`, JSON.stringify(model));
+            localStorage.setItem(`${project.name}_model`, model);
         }
     } catch (e) {
         alert(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`);

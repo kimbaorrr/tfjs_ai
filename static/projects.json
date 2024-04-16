@@ -21,6 +21,7 @@
         "classes": "https://raw.githubusercontent.com/xmartlabs/caffeflow/master/examples/imagenet/imagenet-classes.txt",
         "description": "Mô hình phân loại hình ảnh MobileNet V1",
         "dataset_name": "ImageNet Object Localization Challenge (ILSVRC)",
-        "dataset_url": "https://www.kaggle.com/c/imagenet-object-localization-challenge"
+        "dataset_url": "https://www.kaggle.com/c/imagenet-object-localization-challenge",
+        "image_size": "224x224"
     }
 ]

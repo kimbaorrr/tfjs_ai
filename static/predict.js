@@ -76,7 +76,7 @@ async function predictImage() {
 
 
 async function loadDOM(num) {
-    await $.getJSON('https://api.jsonsilo.com/demo/ca6cf305-0c92-4709-a1a6-d52cf4b36728', function (data) {
+    await $.getJSON('static/projects.json', function (data) {
         project = data[num];
         $("meta[name='description']").attr("content", project.description);
         $("title").text(project.description);

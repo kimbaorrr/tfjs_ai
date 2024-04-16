@@ -76,34 +76,34 @@ async function predictImage() {
 
 
 async function loadDOM(num) {
-    if (localStorage.getItem("project") == null) {
-        await $.getJSON('static/projects.json', function (data) {
-            project = data[num];
-            localStorage.setItem('project', JSON.stringify(project));
-
-        });
-    } else {
-        project = JSON.parse(localStorage.getItem("project"));
-    }
-    $("meta[name='description']").attr("content", project.description);
-    $("title").text(project.description);
-    $("h4").text(project.description);
-    $("a#ds-info").attr("href", project.dataset_url);
-    $("a#ds-info").text(project.dataset_name);
+    await $.getJSON('static/projects.json', function (data) {
+        project = data[num];
+        $("meta[name='description']").attr("content", project.description);
+        $("title").text(project.description);
+        $("h4").text(project.description);
+        $("a#ds-info").attr("href", project.dataset_url);
+        $("a#ds-info").text(project.dataset_name);
+    });
     await loadClasses();
     image_size = project.image_size.split('x');
     image_size = [parseInt(image_size[0]), parseInt(image_size[1])];
 };
 
 async function loadClasses() {
-    await $.get(project.classes, function (data) {
-        let lines = data.split("\n");
-        for (let i = 0, len = lines.length; i < len; i++) {
-            classes[i] = lines[i];
-        }
-        num_classes = Object.keys(classes).length;
-        if (num_classes <= 5) { num_results = num_classes }
-    }, 'text');
+    if (localStorage.getItem(`${project.name}_classes`) != null) {
+        classes = JSON.parse(localStorage.getItem(`${project.name}_classes`));
+    } else {
+        await $.get(project.classes, function (data) {
+            let lines = data.split("\n");
+            for (let i = 0, len = lines.length; i < len; i++) {
+                classes[i] = lines[i];
+            }
+            localStorage.setItem(`${project.name}_classes`, JSON.stringify(classes));
+        }, 'text');
+    }
+    num_classes = Object.keys(classes).length;
+    if (num_classes <= 5) { num_results = num_classes }
+
 };
 
 // function jsonChart(results) {

@@ -1,4 +1,9 @@
-var project = {};
+
+if (localStorage.getItem("project") !== null) {
+    project = JSON.parse(localStorage.getItem("project"));
+} else {
+    var project = {};
+}
 var classes = {};
 var num_classes = undefined;
 var num_results = 5;
@@ -76,14 +81,19 @@ async function predictImage() {
 
 
 async function loadDOM(num) {
-    await $.getJSON('static/projects.json', function (data) {
-        project = data[num];
+    if (localStorage.getItem("project") == null) {
+        await $.getJSON('static/projects.json', function (data) {
+            project = data[num];
+            localStorage.setItem('project', JSON.stringify(project));
+           
+        });
+    } else {
         $("meta[name='description']").attr("content", project.description);
         $("title").text(project.description);
         $("h4").text(project.description);
         $("a#ds-info").attr("href", project.dataset_url);
         $("a#ds-info").text(project.dataset_name);
-    });
+    }
     await loadClasses();
     image_size = project.image_size.split('x');
     image_size = [parseInt(image_size[0]), parseInt(image_size[1])];

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="Python, Keras, Tensorflow, Image Classification, Kaggle">
+    <meta name="author" content="Nguyễn Kim Bảo (BaoIT)">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.css">
+</head>
+
+<body>
+    <input id="choose_project" type="hidden" value="2" />
+    <div class="container-fluid d-flex max-vh-100 max-vw-100 justify-content-between">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-5 col-sm-12">
+                    <h4 class="text-danger fw-bold text-center pt-2 pb-1" style="font-size: 28px;margin: 0;"></h4>
+                    <p class="text-center text-secondary">&copy; 2024 BaoIT. All right reserved.</p>
+                    <p class="text-center pb-1">Dataset URL: <a id="ds-info" href="#" class="text-decoration-none"
+                            target="_blank"></a>
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <input type="file" class="form-control" name="file" onchange="loadImage(event);" required />
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary" onclick="predictImage();">Dự đoán</button>
+                        </div>
+                        <img id="img-to-show" class="pt-4 img-fluid"
+                            src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                            alt="" loading="lazy" />
+                        <p class="text-danger fw-bold text-center pt-3" style="font-size: 17px;" id="best-result">Giá
+                            trị dự đoán: N/A (Acc: 0.0 | Loss: 0.0)</p>
+                        <div style="display: none" id="loading-spin">
+                            <div class="spinner-border text-primary d-block text-center mx-auto mt-3"></div>
+                        </div>
+                        
+                        <div id="xem-them" style="display: none;">
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <hr>
+                                </div>
+                                <div class="col-auto p-0">
+                                    <a href="#chart-zone" class="text-decoration-none text-secondary scroll-down"
+                                        style="font-size: 13px;" data-bs-toggle="collapse">
+                                        Xem thêm
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="col-3">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div id="chart-zone" class="row justify-content-center collapse">
+                                <div class="col-12">
+                                    <div id="chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.17.0/tf.min.js"></script>
+        <script>
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
+        <script src="static/predict.js"></script>
+        <script>loadDOM($("input#choose_project").val());</script>
+</body>
+
+</html>

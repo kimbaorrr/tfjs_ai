@@ -1,0 +1,26 @@
+[
+    {
+        "name": "brain_tumor",
+        "model": "",
+        "classes": "",
+        "description": "Mô hình dự đoán u não dựa trên ảnh chụp cộng hưởng từ MRI",
+        "dataset_name": "Brain Tumor Classifications",
+        "dataset_url": "https://kaggle.com"
+    },
+    {
+        "name": "covid_19",
+        "model": "",
+        "classes": "",
+        "description": "Mô hình dự đoán viêm phổi do Covid-19 dựa trên ảnh chụp X-ray",
+        "dataset_name": "Lung Disease Classification",
+        "dataset_url": "https://kaggle.com"
+    },
+    {
+        "name": "mobilenet_v1",
+        "model": "https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json",
+        "classes": "https://raw.githubusercontent.com/xmartlabs/caffeflow/master/examples/imagenet/imagenet-classes.txt",
+        "description": "Mô hình phân loại hình ảnh MobileNet V1",
+        "dataset_name": "ImageNet Object Localization Challenge (ILSVRC)",
+        "dataset_url": "https://www.kaggle.com/c/imagenet-object-localization-challenge"
+    }
+]

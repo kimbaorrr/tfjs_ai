@@ -12,7 +12,7 @@ async function loadModel() {
     scrollDown();
     try {
         if (localStorage.getItem(`${project.name}_model`) != null) {
-            model = localStorage.getItem(`${project.name}_model`);
+            model = await localStorage.getItem(`${project.name}_model`);
         } else {
 
             model = await tf.loadLayersModel(project.model);

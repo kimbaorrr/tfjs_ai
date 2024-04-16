@@ -8,14 +8,21 @@ var img = document.getElementById('img-to-show');
 
 
 async function loadModel() {
+    loadSpin();
+    scrollDown();
     try {
-        loadSpin();
-        scrollDown();
-        model = await tf.loadLayersModel(project.model);
+        if (localStorage.getItem(`${project.name}_model`) != null) {
+            model = JSON.parse(localStorage.getItem(`${project.name}_model`));
+        } else {
+
+            model = await tf.loadLayersModel(project.model);
+            localStorage.setItem(`${project.name}_model`, model);
+        }
     } catch (e) {
         alert(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`);
         console.error(e.message);
     }
+
 };
 
 function loadImage(event) {

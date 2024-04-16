@@ -16,7 +16,7 @@ async function loadModel() {
         } else {
 
             model = await tf.loadLayersModel(project.model);
-            localStorage.setItem(`${project.name}_model`, model);
+            localStorage.setItem(`${project.name}_model`, JSON.stringify(model));
         }
     } catch (e) {
         alert(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`);
@@ -89,7 +89,7 @@ async function loadDOM(num) {
     else {
         await $.getJSON('static/projects.json', function (data) {
             project = data[num];
-            localStorage.setItem(`${project.name}_project`, project);
+            localStorage.setItem(`${project.name}_project`, JSON.stringify(project));
         });
     }
     $("meta[name='description']").attr("content", project.description);

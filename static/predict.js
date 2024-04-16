@@ -8,21 +8,14 @@ var img = document.getElementById('img-to-show');
 
 
 async function loadModel() {
-    loadSpin();
-    scrollDown();
     try {
-        if (localStorage.getItem(`${project.name}_model`) != null) {
-            model = await localStorage.getItem(`${project.name}_model`);
-        } else {
-
-            model = await tf.loadLayersModel(project.model);
-            localStorage.setItem(`${project.name}_model`, model);
-        }
+        loadSpin();
+        scrollDown();
+        model = await tf.loadLayersModel(project.model);
     } catch (e) {
         alert(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`);
         console.error(e.message);
     }
-
 };
 
 function loadImage(event) {
@@ -89,7 +82,7 @@ async function loadDOM(num) {
     else {
         await $.getJSON('static/projects.json', function (data) {
             project = data[num];
-            localStorage.setItem(`${project.name}_project`, JSON.stringify(project));
+            localStorage.setItem(`${project.name}_project`, project);
         });
     }
     $("meta[name='description']").attr("content", project.description);

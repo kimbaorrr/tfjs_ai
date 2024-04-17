@@ -23,5 +23,15 @@
         "dataset_name": "ImageNet Object Localization Challenge (ILSVRC)",
         "dataset_url": "https://www.kaggle.com/c/imagenet-object-localization-challenge",
         "image_size": "224x224"
+    },
+    {
+        "name": "tyre_quality",
+        "model": "static/tyre_quality/model.json",
+        "classes": "static/tyre_quality/classes.json",
+        "description": "Mô hình dự đoán chất lượng lốp xe",
+        "dataset_name": "Tyre Quality Classfication",
+        "dataset_url": "https://www.kaggle.com/datasets/warcoder/tyre-quality-classification",
+        "image_size": "128x128"
     }
+
 ]

@@ -17,8 +17,8 @@
     },
     {
         "name": "mobilenet_v1",
-        "model": "static/tfjs-models/mobilenet_v1/model.json",
-        "classes": "static/tfjs-models/mobilenet_v1/classes.txt",
+        "model": "https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json",
+        "classes": "https://raw.githubusercontent.com/xmartlabs/caffeflow/master/examples/imagenet/imagenet-classes.txt",
         "description": "Mô hình phân loại hình ảnh MobileNet V1",
         "dataset_name": "ImageNet Object Localization Challenge (ILSVRC)",
         "dataset_url": "https://www.kaggle.com/c/imagenet-object-localization-challenge",

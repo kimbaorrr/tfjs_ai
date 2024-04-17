@@ -37,7 +37,7 @@ function preProcessingImage() {
     let offset = tf.scalar(127);
     let tensor = tf.browser.fromPixels(img)
         .resizeNearestNeighbor(image_size)
-        .toFloat().sub(offset).div(offset).expandDims();
+        .toFloat().sub(offset).div(offset).expandDims(2);
     return tensor;
 };
 

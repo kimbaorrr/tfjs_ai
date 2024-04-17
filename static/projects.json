@@ -17,8 +17,8 @@
     },
     {
         "name": "mobilenet_v1",
-        "model": "static/mobilenet_v1/model.json",
-        "classes": "static/mobilenet_v1/classes.txt",
+        "model": "static/tfjs-models/mobilenet_v1/model.json",
+        "classes": "static/tfjs-models/mobilenet_v1/classes.txt",
         "description": "Mô hình phân loại hình ảnh MobileNet V1",
         "dataset_name": "ImageNet Object Localization Challenge (ILSVRC)",
         "dataset_url": "https://www.kaggle.com/c/imagenet-object-localization-challenge",
@@ -26,8 +26,8 @@
     },
     {
         "name": "tyre_quality",
-        "model": "static/tyre_quality/model.json",
-        "classes": "static/tyre_quality/classes.json",
+        "model": "static/tfjs-models/tyre_quality/model.json",
+        "classes": "static/tfjs-models/tyre_quality/classes.json",
         "description": "Mô hình dự đoán chất lượng lốp xe",
         "dataset_name": "Tyre Quality Classfication",
         "dataset_url": "https://www.kaggle.com/datasets/warcoder/tyre-quality-classification",

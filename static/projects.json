@@ -27,7 +27,7 @@
     {
         "name": "tyre_quality",
         "model": "static/tfjs-models/tyre_quality/model.json",
-        "classes": "static/tfjs-models/tyre_quality/classes.json",
+        "classes": "static/tfjs-models/tyre_quality/classes.txt",
         "description": "Mô hình dự đoán chất lượng lốp xe",
         "dataset_name": "Tyre Quality Classfication",
         "dataset_url": "https://www.kaggle.com/datasets/warcoder/tyre-quality-classification",

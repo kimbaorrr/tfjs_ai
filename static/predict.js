@@ -17,7 +17,7 @@ async function loadModel() {
         scrollDown();
         model = await tf.loadLayersModel(project.model);
     } catch (e) {
-        alert(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`);
+        thongBao(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`, 'error');
         console.error(e.message);
     }
 };
@@ -30,12 +30,12 @@ function loadImage(event) {
     file = event.target.files[0];
     // Kiểm tra tệp có phải là ảnh hay không ?
     if (file.type.split('/')[0] !== 'image') {
-        alert('Tệp tải lên phải là một ảnh !');
+        thongBao('Tệp tải lên phải là một ảnh !', 'warning');
         wrong = true;
     }
     // Kiểm tra dung lượng tệp tải lên
     if (file.size > 10000000) {
-        alert('Dung lượng của ảnh phải < 10MB !');
+        thongBao('Dung lượng của ảnh phải < 10MB !', 'warning');
         wrong = true;
     }
     // Nếu không có lỗi thì hiện ảnh, enable button dự đoán và ngược lại
@@ -186,6 +186,17 @@ async function loadClasses() {
 
 };
 
+function thongBao(message, status) {
+    Swal.fire({
+        position: 'top-end',
+        icon: status,
+        title: message,
+        showConfirmButton: false,
+        timer: 2200,
+        toast: true
+      })
+      
+}
 // function jsonChart(results) {
 //     // Xem_them
 //     $('.scroll-down').click(function () {

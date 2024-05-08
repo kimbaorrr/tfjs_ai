@@ -59,6 +59,7 @@ function preProcessingImage() {
     let tensor = tf.browser.fromPixels(img)
         .resizeNearestNeighbor(image_size)
         .toFloat().sub(offset).div(offset).expandDims(0);
+    console.log(`Input image tensor: ${tensor}`)
     return tensor;
 };
 
@@ -109,6 +110,7 @@ async function predictImage() {
     let tensor = preProcessingImage();
     // Bắt đầu dự đoán & xuất kết quả
     let predictions = await model.predict(tensor).data();
+    console.log(`Output pred tensor: ${predictions}`)
     // Mapping dạng key:value, sắp xếp kết quả dự đoán theo thứ tự giảm dần & chỉ lấy tối đa 5 kết quả đầu ra có acc cao nhất
     let results = Array.from(predictions)
         .map(function (p, i) {

@@ -6,13 +6,11 @@ var model = undefined;
 var image_size = [];
 var img = document.getElementById('img-to-show');
 
-
 async function loadModel() {
     /**
      * Tải mô hình
      */
     try {
-        hideXemThem();
         loadSpin();
         scrollDown();
         model = await tf.loadLayersModel(project.model);
@@ -26,6 +24,7 @@ function loadImage(event) {
     /**
      * Upload ảnh từ máy người dùng
      */
+    hideXemThem();
     let wrong = false;
     file = event.target.files[0];
     // Kiểm tra tệp có phải là ảnh hay không ?
@@ -104,6 +103,9 @@ async function predictImage() {
     /**
      * Dự đoán ảnh đầu vào & xuất kết quả dự đoán
      */
+    // Clear data cũ
+    let results_label = [];
+    let results_acc = [];
     // Tải mô hình
     await loadModel();
     // Tiền xử lý ảnh đầu vào
@@ -111,7 +113,7 @@ async function predictImage() {
     // Bắt đầu dự đoán & xuất kết quả
     let predictions = await model.predict(tensor).data();
     // Mapping dạng key:value, sắp xếp kết quả dự đoán theo thứ tự giảm dần & chỉ lấy tối đa 5 kết quả đầu ra có acc cao nhất
-    let results = Array.from(predictions)
+    Array.from(predictions)
         .map(function (p, i) {
             return {
                 acc: p,
@@ -119,19 +121,21 @@ async function predictImage() {
             };
         }).sort(function (a, b) {
             return b.acc - a.acc;
-        }).slice(0, num_results);
-    console.log(`Result of pred: ${results}`);
+        }).slice(0, num_results).forEach(function (result) {
+            results_label.push(result.className);
+            results_acc.push((result.acc * 100).toFixed(2));
+        });
     // Hiển thị kết quả dự đoán
-    document.getElementById("best-result").innerHTML = `Giá trị dự đoán: ${results[0].className} (Acc: ${results[0].acc.toFixed(2)}, Loss: ${(1 - results[0].acc).toFixed(2)})`;
+    document.getElementById("best-result").innerHTML = `Giá trị dự đoán: ${results_label[0]} (Acc: ${results_acc[0]}%, Loss: ${(100 - results_acc[0]).toFixed(2)}%)`;
     // Ẩn loading spin
     hideSpin();
     // Thực hiện di chuyển xuống cuối trang
     scrollDown();
     // Hiển thị biểu đồ kết quả dự đoán
-    //jsonChart(results);
+    showChart(results_label, results_acc);
+    // Hiển thị nút xem thêm
     showXemThem();
 };
-
 
 async function loadDOM(num) {
     /**
@@ -169,7 +173,7 @@ async function loadClasses() {
     // Kiểm tra data về classes có lưu trong LocalStorage không ?
     if (localStorage.getItem(`${project.name}_classes`) != null) {
         classes = JSON.parse(localStorage.getItem(`${project.name}_classes`));
-    // Nếu chưa có, thực hiện tải lại từ nguồn
+        // Nếu chưa có, thực hiện tải lại từ nguồn
     } else {
         await $.get(project.classes, function (data) {
             // Đọc thông tin các lớp từ file txt & tách từng lớp trên từng dòng
@@ -196,53 +200,61 @@ function thongBao(message, status) {
         showConfirmButton: false,
         timer: 2200,
         toast: true
-      })
-      
+    })
+
 }
-// function showChart(results) {
-//     // Chart
-//     let chart_data = JSON.stringify(results);
-//     console.log(chart_data);
-//     let options = {
-//         noData: {
-//             text: 'Không có dữ liệu !',
-//             align: 'center',
-//             verticalAlign: 'middle',
-//         },
-//         series: [{
-//             name: 'Accuracy', data: chart_data['acc']
-//         }], chart: {
-//             type: 'bar', height: 350
-//         }, plotOptions: {
-//             bar: {
-//                 horizontal: false, columnWidth: '55%', endingShape: 'rounded'
-//             },
-//         }, dataLabels: {
-//             enabled: false
-//         }, stroke: {
-//             show: true, width: 2, colors: ['transparent']
-//         }, xaxis: {
-//             categories: chart_data['className'], title: {
-//                 text: 'Labels'
-//             }
-//         }, yaxis: {
-//             title: {
-//                 text: '% (Accuracy)', fontFamily: 'Arial'
-//             },
-//             min: 0,
-//             max: 100,
-//             decimalsInFloat: 0
 
-//         }, fill: {
-//             opacity: 1
-//         }, tooltip: {
-//             y: {
-//                 formatter: function (val) {
-//                     return val + "%"
-//                 }
-//             }
-//         }
-//     };
-//     new ApexCharts(document.getElementById("#chart"), options).render();
-// };
+function showChart(results_label, results_acc) {
+    // Chart
+    let options = {
+        noData: {
+            text: 'Không có dữ liệu !',
+            align: 'center',
+            verticalAlign: 'middle',
+        },
+        series: [{ name: 'Accuracy', data: results_acc }],
+        chart: {
+            type: 'bar', height: 350
+        }, plotOptions: {
+            bar: {
+                horizontal: false, columnWidth: '55%', endingShape: 'rounded'
+            },
+        }, dataLabels: {
+            enabled: false
+        }, stroke: {
+            show: true, width: 2, colors: ['transparent']
+        }, xaxis: {
+            categories: results_label, title: {
+                text: 'Labels'
+            }
+        }, yaxis: {
+            title: {
+                text: '% (Accuracy)', fontFamily: 'Arial'
+            },
+            min: 0,
+            max: 100,
+            decimalsInFloat: 0
 
+        }, fill: {
+            opacity: 1
+        }, tooltip: {
+            y: {
+                formatter: function (val) {
+                    return val + "%"
+                }
+            }
+        }
+    };
+
+    let chart = new ApexCharts(document.getElementById("chart"), options);
+    chart.render()
+};
+
+function caretUpDown() {
+    scrollDown();
+    if (!$("#xem-them a").hasClass("collapsed")) {
+        $("svg.bi.bi-caret-down").attr("transform", "rotate(180)");
+    } else {
+        $("svg.bi.bi-caret-down").attr("transform", "rotate(0)");
+    }
+}

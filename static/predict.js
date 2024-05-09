@@ -120,6 +120,7 @@ async function predictImage() {
         }).sort(function (a, b) {
             return b.acc - a.acc;
         }).slice(0, num_results);
+    console.log(`Result of pred: ${result}`);
     // Hiển thị kết quả dự đoán
     document.getElementById("best-result").innerHTML = `Giá trị dự đoán: ${results[0].className} (Acc: ${results[0].acc.toFixed(2)}, Loss: ${(1 - results[0].acc).toFixed(2)})`;
     // Ẩn loading spin

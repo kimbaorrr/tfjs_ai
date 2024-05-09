@@ -253,8 +253,8 @@ function showChart(results_label, results_acc) {
 function caretUpDown() {
     scrollDown();
     if (!$("#xem-them a").hasClass("collapsed")) {
-        $("svg.bi.bi-caret-down").attr("transform", "rotate(180)");
+        $("#xem-them svg.bi.bi-caret-down").attr("transform", "rotate(180)");
     } else {
-        $("svg.bi.bi-caret-down").attr("transform", "rotate(0)");
+        $("#xem-them svg.bi.bi-caret-down").attr("transform", "rotate(0)");
     }
 }

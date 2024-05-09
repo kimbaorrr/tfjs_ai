@@ -52,23 +52,6 @@ function caretUpDown() {
     }
 }
 
-function thongBao(message, status) {
-    /**
-     * Hiện thông báo
-     * message: Nội dung
-     * status: Trạng thái thực thi
-     */
-    Swal.fire({
-        position: 'top-end',
-        icon: status,
-        title: message,
-        showConfirmButton: false,
-        timer: 2200,
-        toast: true
-    })
-
-}
-
 
 async function loadModel() {
     /**

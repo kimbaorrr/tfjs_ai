@@ -56,3 +56,20 @@ async function loadClasses() {
     num_classes = Object.keys(classes).length;
     if (num_classes <= 5) { max_results = num_classes }
 };
+
+function thongBao(message, status) {
+    /**
+     * Hiện thông báo
+     * message: Nội dung
+     * status: Trạng thái thực thi
+     */
+    Swal.fire({
+        position: 'top-end',
+        icon: status,
+        title: message,
+        showConfirmButton: false,
+        timer: 2200,
+        toast: true
+    })
+
+}

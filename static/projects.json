@@ -34,10 +34,10 @@
         "image_size": "128x128"
     },
     {
-        "name": "yolov8",
-        "model": "static/tfjs-models/yolov8/model.json",
-        "classes": "static/tfjs-models/yolov8/classes.txt",
-        "description": "Mô hình phát hiện đối tượng YOLOv8",
+        "name": "coco_ssd",
+        "model": "static/tfjs-models/mobilenet_v1/model.json",
+        "classes": "static/tfjs-models/mobilenet_v1/classes.txt",
+        "description": "Mô hình phát hiện đối tượng COCO-SSD",
         "dataset_name": "COCO (Common Objects in Context)",
         "dataset_url": "https://cocodataset.org/#home",
         "image_size": "640x640"

@@ -91,6 +91,7 @@
         </script>
         <script>loadDOM($("input#choose_project").val());</script>
         <script>
+            let webcamStream;
             async function loadModel() {
                 /**
                 Tải mô hình COCO SSD
@@ -189,7 +190,7 @@
                         audio: false
                     });
                     video.srcObject = stream;
-                    mediaStream = stream;
+                    webcamStream = stream;
                     return new Promise(resolve => {
                         video.onloadedmetadata = () => {
                             resolve(video);
@@ -227,7 +228,6 @@
 
         </script>
         <script>
-            let webcamStream;
             function playVideo() {
                 $("#video-file video")[0].play();
             }

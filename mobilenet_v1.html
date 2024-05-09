@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.css">
     <script src="static/common.js"></script>
-    <script>loadDOM($("input#choose_project").val());</script>
 </head>
 
 <body>
@@ -86,7 +85,9 @@
                 window.history.replaceState(null, null, window.location.href);
             }
         </script>
+        <script>loadDOM($("input#choose_project").val());</script>
         <script src="static/predict.js"></script>
+        
 </body>
 
 </html>

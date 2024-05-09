@@ -266,10 +266,10 @@
                     stopVideo();
                     document.getElementById("webcam").style.display = "block";
                     let video = await setupWebcam();
-                    video.play();
                     let canvas = $("#webcam canvas")[0];
                     canvas.width = video.width
                     canvas.height = video.height;
+                    video.play();
                     runDetect(video, canvas);
                 }
             }

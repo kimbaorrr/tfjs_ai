@@ -32,6 +32,15 @@
         "dataset_name": "Tyre Quality Classfication",
         "dataset_url": "https://www.kaggle.com/datasets/warcoder/tyre-quality-classification",
         "image_size": "128x128"
+    },
+    {
+        "name": "yolov8",
+        "model": "static/tfjs-models/yolov8/model.json",
+        "classes": "static/tfjs-models/yolov8/classes.txt",
+        "description": "Mô hình phát hiện đối tượng YOLOv8",
+        "dataset_name": "COCO (Common Objects in Context)",
+        "dataset_url": "https://cocodataset.org/#home",
+        "image_size": "640x640"
     }
 
 ]

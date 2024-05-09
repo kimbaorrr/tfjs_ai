@@ -193,6 +193,11 @@ async function loadClasses() {
 };
 
 function thongBao(message, status) {
+    /**
+     * Hiện thông báo
+     * message: Nội dung
+     * status: Trạng thái thực thi
+     */
     Swal.fire({
         position: 'top-end',
         icon: status,
@@ -205,6 +210,11 @@ function thongBao(message, status) {
 }
 
 function showChart(results_label, results_acc) {
+    /**
+     * Hiển thị biểu đồ dự đoán
+     * results_label: Tập nhãn đầu ra dự đoán
+     * results_acc: Tập ghi nhận độ tin cậy của đầu ra
+     */
     // Chart
     let options = {
         noData: {
@@ -245,13 +255,17 @@ function showChart(results_label, results_acc) {
             }
         }
     };
-
+    // Bắt đầu vẽ biểu đồ
     let chart = new ApexCharts(document.getElementById("chart"), options);
     chart.render()
 };
 
 function caretUpDown() {
+    /**
+     * Chuyển đổi hướng caret
+     */
     scrollDown();
+    // Nếu chưa click vào xem thêm thì caret ở góc 90 & ngược lại
     if (!$("#xem-them a").hasClass("collapsed")) {
         $("#xem-them svg.bi.bi-caret-down").attr("transform", "rotate(180)");
     } else {

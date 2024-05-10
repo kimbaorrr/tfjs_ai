@@ -77,9 +77,9 @@ function drawBoxes(predictions, canvas) {
         context.fillStyle = 'green';
         context.stroke();
         // In text lên box
-        context.font = '16px Arial';
+        context.font = '25px Arial';
         context.fillStyle = "yellow";
-        context.fillText(`${prediction.class} ${score}`, x, y - 5);
+        context.fillText(`${prediction.class} ${score}`, x, y - 6);
     });
 }
 

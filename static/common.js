@@ -71,5 +71,4 @@ function thongBao(message, status) {
         timer: 2200,
         toast: true
     })
-
 }

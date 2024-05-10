@@ -22,7 +22,7 @@ function detectVideoFile() {
         wrong = true;
     }
     // Kiểm tra dung lượng tệp tải lên
-    if (file.size > 100000000000000000) {
+    if (file.size > 100000000) {
         thongBao('Dung lượng của ảnh phải < 100MB !', 'warning');
         wrong = true;
     }
@@ -43,8 +43,6 @@ function detectVideoFile() {
         // Load meta của video & bắt đầu chạy dự đoán
         video.onloadedmetadata = async () => {
             await video.play();
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
             runDetect(video, canvas);
         };
     }
@@ -90,11 +88,7 @@ async function setupWebcam() {
     let video = $("#webcam video")[0];
     if (navigator.mediaDevices.getUserMedia) {
         let stream = await navigator.mediaDevices.getUserMedia({
-            video: {
-                facingMode: "environment",
-                width: 1280,
-                height: 720
-            },
+            video: true,
             audio: false
         });
         video.srcObject = stream;
@@ -208,9 +202,7 @@ async function chooseInput(i_type) {
 
         let video = await setupWebcam();
         let canvas = $("#webcam canvas")[0];
-        canvas.width = video.width
-        canvas.height = video.height;
-        video.play();
         runDetect(video, canvas);
     }
 }
+

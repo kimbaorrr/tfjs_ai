@@ -133,14 +133,34 @@ async function runDetect(video, canvas) {
 }
 
 function playVideo() {
-    $("#video-file video")[0].play();
+    /**
+     * Tiếp tục phát video khi nhấn nút Phát
+     */
+    let video = $("#video-file video")[0];
+    if (video.paused || video.ended) {
+        video.play();
+    }
+    
 }
 
 function stopVideo() {
+    /**
+     * Tạm dừng phát video khi nhấn nút Dừng
+     */
     $("#video-file video")[0].pause();
 }
 
+function hidePlayBtn() {
+    /**
+     * Ẩn nút Play khi video chưa Dừng
+     */
+    
+}
+
 function stopWebcam() {
+    /**
+     * Dừng webcam
+     */
     if (webcamStream) {
         let video = $("#webcam video")[0];
         // Dừng các track
@@ -149,15 +169,18 @@ function stopWebcam() {
         });
 
         // Xóa dữ liệu biến
-        webcamStream = null;
+        webcamStream = undefined;
 
         // Dừng video & xóa src
         video.pause();
-        video.srcObject = null;
+        video.srcObject = undefined;
     }
 }
 
 async function chooseInput(i_type) {
+    /**
+     * Chọn đầu vào là Video file hoặc Webcam
+     */
     document.getElementById("video-file").style.display = "none";
     document.getElementById("webcam").style.display = "none";
 
@@ -169,6 +192,7 @@ async function chooseInput(i_type) {
     if (i_type == "webcam") {
         stopVideo();
         document.getElementById("webcam").style.display = "block";
+
         let video = await setupWebcam();
         let canvas = $("#webcam canvas")[0];
         canvas.width = video.width

@@ -57,10 +57,12 @@
                                             onchange="detectVideoFile();" required />
                                     </div>
                                     <div class="col-auto">
-                                        <button class="btn btn-primary" id="play-btn" onclick="playVideo();">Phát</button>
+                                        <button class="btn btn-primary" id="play-btn"
+                                            onclick="playVideo();">Phát</button>
                                     </div>
                                     <div class="col-auto">
-                                        <button class="btn btn-danger" id="stop-btn" onclick="stopVideo();">Dừng</button>
+                                        <button class="btn btn-danger" id="stop-btn"
+                                            onclick="stopVideo();">Dừng</button>
                                     </div>
                                     <div class="col-12 pt-4">
                                         <div class="ratio ratio-16x9">
@@ -68,28 +70,41 @@
                                             <canvas width="640" height="480"></canvas>
                                         </div>
 
-                                    </div>
-                                </div>
+                                        <div id="playbackSpeed" style="display: none">
+                                            <div class="col-12 pt-2">
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <label for="playbackSpeed">Tốc độ phát lại</label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="range" class="form-range" min="0.1" max="2"
+                                                            step="0.1" value="1" onchange="changePlaybackSpeed();">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.17.0/tf.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-        <script>
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
-            }
-        </script>
-        <script>loadDOM($("input#choose_project").val());</script>
-        <script src="static/coco_ssd.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.17.0/tf.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+            <script>
+                if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                }
+            </script>
+            <script>loadDOM($("input#choose_project").val());</script>
+            <script src="static/coco_ssd.js"></script>
 </body>
 
 </html>

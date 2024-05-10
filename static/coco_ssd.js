@@ -28,6 +28,7 @@ function detectVideoFile() {
     }
     // Nếu không có lỗi thì tiếp tục
     if (!wrong) {
+        showPlaybackSpeed();
         let video = $("#video-file video")[0];
         let canvas = $("#video-file canvas")[0];
         let context = canvas.getContext('2d');
@@ -136,11 +137,7 @@ function playVideo() {
     /**
      * Tiếp tục phát video khi nhấn nút Phát
      */
-    let video = $("#video-file video")[0];
-    if (video.paused || video.ended) {
-        video.play();
-    }
-    
+    $("#video-file video")[0].play();
 }
 
 function stopVideo() {
@@ -154,7 +151,23 @@ function hidePlayBtn() {
     /**
      * Ẩn nút Play khi video chưa Dừng
      */
-    
+
+}
+
+function showPlaybackSpeed() {
+    /**
+     * Hiển thị thanh điều chỉnh tốc độ phát
+     */
+    $("#playbackSpeed").css("display", "block");
+}
+
+function changePlaybackSpeed() {
+    /**
+     * Thay đổi tốc độ phát video
+     */
+    let video = $("#video-file video")[0];
+    let speed = $("#playbackSpeed input")[0].value;
+    video.playbackRate *= parseFloat(speed);
 }
 
 function stopWebcam() {

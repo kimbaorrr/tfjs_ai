@@ -141,13 +141,6 @@ function stopVideo() {
     $("#video-file video")[0].pause();
 }
 
-function hidePlayBtn() {
-    /**
-     * Ẩn nút Play khi video chưa Dừng
-     */
-
-}
-
 function showPlaybackSpeed() {
     /**
      * Hiển thị thanh điều chỉnh tốc độ phát

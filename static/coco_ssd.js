@@ -184,25 +184,40 @@ function stopWebcam() {
     }
 }
 
+function stopAllVideoTags() {
+    /**
+     * Dừng tất cả các video & webcam
+     */
+    let videos = $("video");
+    for (let i = 0; i < videos.length; i++) {
+        videos[i].pause();
+    }
+    stopWebcam();
+}
+
 async function chooseInput(i_type) {
     /**
      * Chọn đầu vào là Video file hoặc Webcam
      */
-    document.getElementById("video-file").style.display = "none";
-    document.getElementById("webcam").style.display = "none";
-
-    if (i_type == "video") {
-        stopWebcam();
-        document.getElementById("video-file").style.display = "block";
+    $("#video-file").css("display", "none");
+    $("#webcam").css("display", "none");
+    $("#rtsp").css("display", "none");
+    stopAllVideoTags();
+    if (i_type == "video-file") {
+        $("#video-file").css("display", "block");
     }
 
     if (i_type == "webcam") {
-        stopVideo();
-        document.getElementById("webcam").style.display = "block";
-
+        $("#webcam").css("display", "block");
         let video = await setupWebcam();
         let canvas = $("#webcam canvas")[0];
         runDetect(video, canvas);
+    }
+
+    if (i_type == "rtsp") {
+        //$("#rtsp").css("display", "block");
+        thongBao("Chức năng này đang được phát triển !", "info");
+
     }
 }
 

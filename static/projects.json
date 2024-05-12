@@ -35,8 +35,8 @@
     },
     {
         "name": "coco_ssd",
-        "model": "static/tfjs-models/mobilenet_v1/model.json",
-        "classes": "static/tfjs-models/mobilenet_v1/classes.txt",
+        "model": "",
+        "classes": "https://raw.githubusercontent.com/xmartlabs/caffeflow/master/examples/imagenet/imagenet-classes.txt",
         "description": "Mô hình phát hiện đối tượng COCO-SSD",
         "dataset_name": "COCO (Common Objects in Context)",
         "dataset_url": "https://cocodataset.org/#home",

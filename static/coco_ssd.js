@@ -70,12 +70,12 @@ function drawBoxes(predictions, canvas) {
         // Bắt đầu vẽ bouding box
         context.rect(x, y, w, h);
         // Quy định độ dày & màu sắc của đường viền
-        context.lineWidth = 3;
+        context.lineWidth = 5;
         context.strokeStyle = 'green';
         context.fillStyle = 'green';
         context.stroke();
         // In text lên box
-        context.font = '25px Arial';
+        context.font = '30px Arial';
         context.fillStyle = "yellow";
         context.fillText(`${prediction.class} ${score}`, x, y - 6);
     });

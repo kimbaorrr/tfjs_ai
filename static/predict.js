@@ -1,37 +1,37 @@
 var model = undefined;
 var image_size = [];
-var img = document.getElementById('img-to-show');
+var img = $("#img-to-show")[0];
 
 function loadSpin() {
     /**
      * Hiện circle loadings
      */
-    document.getElementById("best-result").style.display = "none";
-    document.getElementById("loading-spin").style.display = "block";
+    $("#best-result").css("display", "none");
+    $("#loading-spin").css("display", "block");
 }
 
 function hideSpin() {
     /**
      * Ẩn circle loadings
      */
-    document.getElementById("best-result").style.display = "block";
-    document.getElementById("loading-spin").style.display = "none";
+    $("#best-result").css("display", "block");
+    $("#loading-spin").css("display", "none");
 }
 
 function enablePredBtn() {
-    document.getElementById("pred-btn").disabled = false;
+    $("#pred-btn").prop("disabled", false);
 }
 
 function disablePredBtn() {
-    document.getElementById("pred-btn").disabled = true;
+    $("#pred-btn").prop("disabled", true);
 }
 
 function hideXemThem() {
-    document.getElementById('xem-them').style.display = "none";
+    $("#xem-them").css("display", "none");
 }
 
 function showXemThem() {
-    document.getElementById('xem-them').style.display = "block";
+    $("#xem-them").css("display", "block");
 }
 
 function scrollDown() {
@@ -45,10 +45,11 @@ function caretUpDown() {
      */
     scrollDown();
     // Nếu chưa click vào xem thêm thì caret ở góc 90 & ngược lại
+    let caretUpDown = $("#xem-them svg.bi.bi-caret-down");
     if (!$("#xem-them a").hasClass("collapsed")) {
-        $("#xem-them svg.bi.bi-caret-down").attr("transform", "rotate(180)");
+        caretUpDown.attr("transform", "rotate(180)");
     } else {
-        $("#xem-them svg.bi.bi-caret-down").attr("transform", "rotate(0)");
+        caretUpDown.attr("transform", "rotate(0)");
     }
 }
 
@@ -58,8 +59,6 @@ async function loadModel() {
      * Tải mô hình
      */
     try {
-        loadSpin();
-        scrollDown();
         model = await tf.loadLayersModel(project.model);
     } catch (e) {
         thongBao(`Có lỗi khi tải mô hình. Thử tải lại trang !\n${e.message}`, 'error');
@@ -116,6 +115,9 @@ async function predictImage() {
     // Clear data cũ
     let results_label = [];
     let results_acc = [];
+    // Hiện circle loading
+    scrollDown();
+    loadSpin();
     // Tải mô hình
     await loadModel();
     // Tiền xử lý ảnh đầu vào
@@ -136,7 +138,7 @@ async function predictImage() {
             results_acc.push((result.acc * 100).toFixed(2));
         });
     // Hiển thị kết quả dự đoán
-    document.getElementById("best-result").innerHTML = `Giá trị dự đoán: ${results_label[0]} (Acc: ${results_acc[0]}%, Loss: ${(100 - results_acc[0]).toFixed(2)}%)`;
+    $("#best-result").text(`Giá trị dự đoán: ${results_label[0]} (Acc: ${results_acc[0]}%, Loss: ${(100 - results_acc[0]).toFixed(2)}%)`);
     // Ẩn loading spin
     hideSpin();
     // Thực hiện di chuyển xuống cuối trang
@@ -195,6 +197,6 @@ function showChart(results_label, results_acc) {
         }
     };
     // Bắt đầu vẽ biểu đồ
-    let chart = new ApexCharts(document.getElementById("chart"), options);
+    let chart = new ApexCharts($("#chart")[0], options);
     chart.render()
 };

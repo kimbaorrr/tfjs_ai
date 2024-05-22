@@ -197,6 +197,5 @@ function showChart(results_label, results_acc) {
         }
     };
     // Bắt đầu vẽ biểu đồ
-    let chart = new ApexCharts($("#chart")[0], options);
-    chart.render()
+    new ApexCharts($("#chart")[0], options).render();
 };

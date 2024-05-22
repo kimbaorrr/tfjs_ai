@@ -6,16 +6,16 @@ function loadSpin() {
     /**
      * Hiện circle loadings
      */
-    $("#best-result").css("display", "none");
-    $("#loading-spin").css("display", "block");
+    $("#best-result").hide();
+    $("#loading-spin").show();
 }
 
 function hideSpin() {
     /**
      * Ẩn circle loadings
      */
-    $("#best-result").css("display", "block");
-    $("#loading-spin").css("display", "none");
+    $("#best-result").show();
+    $("#loading-spin").hide();
 }
 
 function enablePredBtn() {
@@ -27,11 +27,11 @@ function disablePredBtn() {
 }
 
 function hideXemThem() {
-    $("#xem-them").css("display", "none");
+    $("#xem-them").hide();
 }
 
 function showXemThem() {
-    $("#xem-them").css("display", "block");
+    $("#xem-them").show();
 }
 
 function scrollDown() {

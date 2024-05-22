@@ -1,4 +1,4 @@
-let webcamStream;
+var webcamStream;
 async function loadModel() {
     /**
     Tải mô hình COCO SSD
